@@ -1,7 +1,7 @@
 package valueobject
 
 import (
-	"STUOJ/internal/domain/shared"
+	"common/domain/shared"
 	"errors"
 	"regexp"
 )
