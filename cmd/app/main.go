@@ -1,0 +1,9 @@
+package app
+
+import "user-service/cmd/bootstrap"
+
+func Main() {
+	bootstrap.InitConfig()
+	bootstrap.InitNacos()
+	bootstrap.InitDatabase()
+}
