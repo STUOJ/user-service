@@ -15,6 +15,7 @@ type Config struct {
 	Email    EmailConf           `yaml:"email" json:"email"`
 	Token    TokenConf           `yaml:"token" json:"token"`
 	Nacos    config.NacosConf    `yaml:"nacos" json:"nacos"`
+	Grpc     config.GrpcConf     `yaml:"grpc" json:"grpc"`
 }
 
 // Config 初始化
