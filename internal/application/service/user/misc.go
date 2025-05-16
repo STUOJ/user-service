@@ -1,9 +1,9 @@
 package user
 
 import (
-	"user-service/internal/application/dto/request"
-	"user-service/internal/infrastructure/persistence/entity"
-	"user-service/pkg/errors"
+	"common/application/dto/request"
+	"common/infrastructure/persistence/entity"
+	"common/pkg/errors"
 )
 
 // 检查权限
