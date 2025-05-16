@@ -10,12 +10,8 @@ var (
 )
 
 type Config struct {
-	Database config.DatabaseConf `yaml:"database" json:"database"`
-	Server   config.ServerConf   `yaml:"server" json:"server"`
-	Email    EmailConf           `yaml:"email" json:"email"`
-	Token    TokenConf           `yaml:"token" json:"token"`
-	Nacos    config.NacosConf    `yaml:"nacos" json:"nacos"`
-	Grpc     config.GrpcConf     `yaml:"grpc" json:"grpc"`
+	Nacos       config.NacosConf `yaml:"nacos" json:"nacos"`
+	UserService UserServiceConf  `yaml:"user-service" json:"user_service"`
 }
 
 // Config 初始化
@@ -35,19 +31,17 @@ func InitConfig() error {
 	if err != nil {
 		return err
 	}
-	utils.Expire = Conf.Token.Expire
-	utils.Secret = Conf.Token.Secret
-	utils.Refresh = Conf.Token.Refresh
-	utils.EmailHost = Conf.Email.Host
-	utils.EmailPort = Conf.Email.Port
-	utils.FromEmail = Conf.Email.Email
-	utils.FromEmailSmtpPwd = Conf.Email.SmtpPwd
+	utils.Expire = Conf.UserService.Token.Expire
+	utils.Secret = Conf.UserService.Token.Secret
+	utils.Refresh = Conf.UserService.Token.Refresh
+	utils.EmailHost = Conf.UserService.Email.Host
+	utils.EmailPort = Conf.UserService.Email.Port
+	utils.FromEmail = Conf.UserService.Email.Email
+	utils.FromEmailSmtpPwd = Conf.UserService.Email.SmtpPwd
 	return nil
 }
 
 func (c *Config) Default() {
-	c.Database.Default()
-	c.Server.Default()
-	c.Token.Default()
 	c.Nacos.Default()
+	c.UserService.Default()
 }
