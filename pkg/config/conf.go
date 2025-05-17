@@ -40,5 +40,4 @@ func InitConfig() error {
 
 func (c *Config) Default() {
 	c.Nacos.Default()
-	c.UserService.Default()
 }

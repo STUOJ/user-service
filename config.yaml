@@ -1,5 +1,4 @@
 nacos:
-    enable: true
     client:
         namespace-id: ""
         timeout-ms: 5000
@@ -15,7 +14,7 @@ nacos:
     register:
         ip: 127.0.0.1
         port: 19191
-        service-name: user-service
+        service-name: "user-service"
         weight: 10
         enable: true
         healthy: true

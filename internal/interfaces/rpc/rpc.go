@@ -4,8 +4,8 @@ import (
 	"google.golang.org/grpc"
 	"net"
 	"stuoj-api/api/pb"
+	"stuoj-api/interfaces/rpc/interceptors"
 	"user-service/internal/interfaces/rpc/handler"
-	"user-service/internal/interfaces/rpc/interceptors"
 	"user-service/pkg/config"
 )
 

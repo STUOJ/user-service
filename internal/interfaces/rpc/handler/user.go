@@ -2,10 +2,9 @@ package handler
 
 import (
 	"context"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
 	"stuoj-api/api/pb"
 	"stuoj-api/application/converter"
+	"stuoj-common/pkg/errors"
 	"user-service/internal/application/service/user"
 )
 
@@ -20,7 +19,11 @@ func (s *UserServer) Update(ctx context.Context, req *pb.UserUpdateRequest) (*pb
 
 	err := user.Update(updateReq, reqUser)
 	if err != nil {
-		return nil, status.Error(codes.Internal, err.Error())
+		// 将业务错误转换为gRPC错误
+		if customErr, ok := err.(*errors.Error); ok {
+			return nil, customErr.ToGrpcError()
+		}
+		return nil, errors.ErrInternalServer.WithError(err).ToGrpcError()
 	}
 
 	return &pb.UserUpdateResponse{}, nil
@@ -33,7 +36,11 @@ func (s *UserServer) UpdatePassword(ctx context.Context, req *pb.UserForgetPassw
 
 	err := user.UpdatePassword(updateReq, reqUser)
 	if err != nil {
-		return nil, status.Error(codes.Internal, err.Error())
+		// 将业务错误转换为gRPC错误
+		if customErr, ok := err.(*errors.Error); ok {
+			return nil, customErr.ToGrpcError()
+		}
+		return nil, errors.ErrInternalServer.WithError(err).ToGrpcError()
 	}
 
 	return &pb.UserForgetPasswordResponse{}, nil
@@ -46,7 +53,11 @@ func (s *UserServer) UpdateRole(ctx context.Context, req *pb.UserUpdateRoleReque
 
 	err := user.UpdateRole(updateReq, reqUser)
 	if err != nil {
-		return nil, status.Error(codes.Internal, err.Error())
+		// 将业务错误转换为gRPC错误
+		if customErr, ok := err.(*errors.Error); ok {
+			return nil, customErr.ToGrpcError()
+		}
+		return nil, errors.ErrInternalServer.WithError(err).ToGrpcError()
 	}
 
 	return &pb.UserUpdateRoleResponse{}, nil
@@ -58,7 +69,11 @@ func (s *UserServer) SelectById(ctx context.Context, req *pb.UserSelectByIdReque
 
 	userData, err := user.SelectById(req.Id, reqUser)
 	if err != nil {
-		return nil, status.Error(codes.Internal, err.Error())
+		// 将业务错误转换为gRPC错误
+		if customErr, ok := err.(*errors.Error); ok {
+			return nil, customErr.ToGrpcError()
+		}
+		return nil, errors.ErrInternalServer.WithError(err).ToGrpcError()
 	}
 
 	pbUserData := converter.UserDataToPB(userData.UserData)
@@ -76,7 +91,11 @@ func (s *UserServer) SelectByEmail(ctx context.Context, req *pb.UserSelectByEmai
 
 	userData, err := user.SelectByEmail(req.Email, reqUser)
 	if err != nil {
-		return nil, status.Error(codes.Internal, err.Error())
+		// 将业务错误转换为gRPC错误
+		if customErr, ok := err.(*errors.Error); ok {
+			return nil, customErr.ToGrpcError()
+		}
+		return nil, errors.ErrInternalServer.WithError(err).ToGrpcError()
 	}
 
 	pbUserData := converter.UserDataToPB(userData)
@@ -93,7 +112,11 @@ func (s *UserServer) Select(ctx context.Context, req *pb.UserSelectRequest) (*pb
 
 	result, err := user.Select(params, reqUser)
 	if err != nil {
-		return nil, status.Error(codes.Internal, err.Error())
+		// 将业务错误转换为gRPC错误
+		if customErr, ok := err.(*errors.Error); ok {
+			return nil, customErr.ToGrpcError()
+		}
+		return nil, errors.ErrInternalServer.WithError(err).ToGrpcError()
 	}
 
 	pbUsers := make([]*pb.UserData, 0, len(result.Users))
@@ -116,7 +139,11 @@ func (s *UserServer) LoginByEmail(ctx context.Context, req *pb.UserLoginRequest)
 
 	token, err := user.LoginByEmail(loginReq, reqUser)
 	if err != nil {
-		return nil, status.Error(codes.Unauthenticated, err.Error())
+		// 将业务错误转换为gRPC错误
+		if customErr, ok := err.(*errors.Error); ok {
+			return nil, customErr.ToGrpcError()
+		}
+		return nil, errors.ErrInternalServer.WithError(err).ToGrpcError()
 	}
 
 	return &pb.UserLoginResponse{
@@ -128,7 +155,11 @@ func (s *UserServer) LoginByEmail(ctx context.Context, req *pb.UserLoginRequest)
 func (s *UserServer) SelectRoleById(ctx context.Context, req *pb.UserSelectRoleByIdRequest) (*pb.UserSelectRoleByIdResponse, error) {
 	role, err := user.SelectRoleById(req.Id)
 	if err != nil {
-		return nil, status.Error(codes.Internal, err.Error())
+		// 将业务错误转换为gRPC错误
+		if customErr, ok := err.(*errors.Error); ok {
+			return nil, customErr.ToGrpcError()
+		}
+		return nil, errors.ErrInternalServer.WithError(err).ToGrpcError()
 	}
 
 	return &pb.UserSelectRoleByIdResponse{
@@ -143,7 +174,11 @@ func (s *UserServer) Statistics(ctx context.Context, req *pb.UserStatisticsReque
 
 	stats, err := user.Statistics(params, reqUser)
 	if err != nil {
-		return nil, status.Error(codes.Internal, err.Error())
+		// 将业务错误转换为gRPC错误
+		if customErr, ok := err.(*errors.Error); ok {
+			return nil, customErr.ToGrpcError()
+		}
+		return nil, errors.ErrInternalServer.WithError(err).ToGrpcError()
 	}
 
 	items := converter.StatisticsItemsToPB(stats)
@@ -160,7 +195,11 @@ func (s *UserServer) Register(ctx context.Context, req *pb.UserRegisterRequest) 
 
 	id, err := user.Register(registerReq, reqUser)
 	if err != nil {
-		return nil, status.Error(codes.Internal, err.Error())
+		// 将业务错误转换为gRPC错误
+		if customErr, ok := err.(*errors.Error); ok {
+			return nil, customErr.ToGrpcError()
+		}
+		return nil, errors.ErrInternalServer.WithError(err).ToGrpcError()
 	}
 
 	return &pb.UserRegisterResponse{
@@ -174,7 +213,11 @@ func (s *UserServer) Delete(ctx context.Context, req *pb.UserDeleteRequest) (*pb
 
 	err := user.Delete(req.Id, reqUser)
 	if err != nil {
-		return nil, status.Error(codes.Internal, err.Error())
+		// 将业务错误转换为gRPC错误
+		if customErr, ok := err.(*errors.Error); ok {
+			return nil, customErr.ToGrpcError()
+		}
+		return nil, errors.ErrInternalServer.WithError(err).ToGrpcError()
 	}
 
 	return &pb.UserDeleteResponse{}, nil
@@ -187,7 +230,11 @@ func (s *UserServer) Count(ctx context.Context, req *pb.UserCountRequest) (*pb.U
 	qc := converter.UserParams2Query(params)
 	count, err := user.Count(qc)
 	if err != nil {
-		return nil, status.Error(codes.Internal, err.Error())
+		// 将业务错误转换为gRPC错误
+		if customErr, ok := err.(*errors.Error); ok {
+			return nil, customErr.ToGrpcError()
+		}
+		return nil, errors.ErrInternalServer.WithError(err).ToGrpcError()
 	}
 
 	return &pb.UserCountResponse{
