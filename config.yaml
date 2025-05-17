@@ -21,5 +21,5 @@ nacos:
         healthy: true
         ephemeral: true
     config:
-        dataId: user-service.yaml
+        data-id: user-service.yaml
         group: DEFAULT_GROUP
