@@ -1,9 +1,9 @@
 package valueobject
 
 import (
-	"common/domain/shared"
-	"common/infrastructure/persistence/entity"
-	"common/pkg/errors"
+	"stuoj-common/domain/shared"
+	"stuoj-common/infrastructure/persistence/entity"
+	"stuoj-common/pkg/errors"
 )
 
 type Role struct {

@@ -1,8 +1,8 @@
 package bootstrap
 
 import (
-	"common/infrastructure/persistence/repository"
 	"log"
+	"stuoj-common/infrastructure/persistence/repository"
 	"time"
 )
 

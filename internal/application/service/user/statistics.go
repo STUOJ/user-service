@@ -1,8 +1,8 @@
 package user
 
 import (
-	"common/infrastructure/persistence/repository/option"
-	"common/infrastructure/persistence/repository/querycontext"
+	"stuoj-common/infrastructure/persistence/repository/option"
+	"stuoj-common/infrastructure/persistence/repository/querycontext"
 	"user-service/internal/domain/user"
 )
 

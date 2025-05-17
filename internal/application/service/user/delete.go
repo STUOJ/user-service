@@ -1,7 +1,7 @@
 package user
 
 import (
-	"common/application/dto/request"
+	"stuoj-api/application/dto/request"
 	"user-service/internal/domain/user"
 )
 

@@ -1,8 +1,8 @@
 package valueobject
 
 import (
-	"common/domain/shared"
-	"common/pkg/errors"
+	"stuoj-common/domain/shared"
+	"stuoj-common/pkg/errors"
 )
 
 type Id struct {

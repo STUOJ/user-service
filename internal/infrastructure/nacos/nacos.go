@@ -1,7 +1,7 @@
 package nacos
 
 import (
-	"common/infrastructure/nacos"
+	"stuoj-common/infrastructure/nacos"
 	"user-service/pkg/config"
 )
 

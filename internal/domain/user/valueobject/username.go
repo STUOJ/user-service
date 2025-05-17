@@ -1,10 +1,10 @@
 package valueobject
 
 import (
-	"common/domain/shared"
-	"common/pkg/utils"
 	"errors"
 	"strings"
+	"stuoj-common/domain/shared"
+	"stuoj-common/pkg/utils"
 	"unicode/utf8"
 )
 

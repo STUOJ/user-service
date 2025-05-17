@@ -1,9 +1,9 @@
 package valueobject
 
 import (
-	"common/domain/shared"
 	"errors"
 	"regexp"
+	"stuoj-common/domain/shared"
 )
 
 type Email struct {

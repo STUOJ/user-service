@@ -6,4 +6,6 @@ func Main() {
 	bootstrap.InitConfig()
 	bootstrap.InitNacos()
 	bootstrap.InitDatabase()
+	//bootstrap.InitRpc()
+	bootstrap.InitServer()
 }

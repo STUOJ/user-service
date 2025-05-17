@@ -1,14 +1,15 @@
 package user
 
 import (
-	"common/application/dto"
-	"common/application/dto/request"
-	"common/application/dto/response"
-	"common/infrastructure/persistence/entity"
-	"common/infrastructure/persistence/repository/querycontext"
-	"common/pkg/errors"
-	"common/pkg/utils"
 	"log"
+	"stuoj-api/application/converter"
+	"stuoj-api/application/dto"
+	"stuoj-api/application/dto/request"
+	"stuoj-api/application/dto/response"
+	"stuoj-common/infrastructure/persistence/entity"
+	"stuoj-common/infrastructure/persistence/repository/querycontext"
+	"stuoj-common/pkg/errors"
+	"stuoj-common/pkg/utils"
 	"user-service/internal/domain/user"
 )
 
@@ -35,8 +36,8 @@ func SelectById(id int64, reqUser request.ReqUser) (response.UserQueryData, erro
 		u0.Email.Set("")
 	}
 
-	resp.UserData = domain2Resp(u0)
-	resp.UserStatistics = response.Map2UserStatistics(map_)
+	resp.UserData = userDomain2Resp(u0)
+	resp.UserStatistics = map2UserStatistics(map_)
 	return resp, nil
 }
 
@@ -53,7 +54,7 @@ func SelectByEmail(email string, reqUser request.ReqUser) (response.UserData, er
 		return resp, err
 	}
 
-	resp = domain2Resp(dmUser)
+	resp = userDomain2Resp(dmUser)
 	return resp, nil
 }
 
@@ -62,7 +63,7 @@ func Select(params request.QueryUserParams, reqUser request.ReqUser) (UserPage, 
 	var resp UserPage
 
 	// 查询
-	qc := params2Query(params)
+	qc := converter.UserParams2Query(params)
 	qc.Field.SelectId().SelectUsername().SelectRole().SelectEmail().SelectAvatar().SelectSignature().SelectCreateTime().SelectUpdateTime()
 	users, _, err := user.Query.Select(qc)
 	if err != nil {
@@ -70,7 +71,7 @@ func Select(params request.QueryUserParams, reqUser request.ReqUser) (UserPage, 
 	}
 
 	for _, u := range users {
-		respUser := domain2Resp(u)
+		respUser := userDomain2Resp(u)
 		resp.Users = append(resp.Users, respUser)
 	}
 
@@ -126,7 +127,7 @@ func SelectRoleById(id int64) (entity.Role, error) {
 }
 
 func Statistics(params request.UserStatisticsParams, reqUser request.ReqUser) (response.StatisticsRes, error) {
-	qc := params2Query(params.QueryUserParams)
+	qc := converter.UserParams2Query(params.QueryUserParams)
 	qc.GroupBy = params.GroupBy
 	resp, err := user.Query.GroupCount(qc)
 	if err != nil {

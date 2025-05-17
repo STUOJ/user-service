@@ -1,8 +1,8 @@
 package config
 
 import (
-	"common/pkg/config"
-	"common/pkg/utils"
+	"stuoj-common/pkg/config"
+	"stuoj-common/pkg/utils"
 )
 
 var (

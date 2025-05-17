@@ -1,10 +1,10 @@
 package user
 
 import (
-	"common/application/dto/request"
-	"common/infrastructure/persistence/entity"
-	"common/pkg/errors"
-	"common/pkg/utils"
+	"stuoj-api/application/dto/request"
+	"stuoj-common/infrastructure/persistence/entity"
+	"stuoj-common/pkg/errors"
+	"stuoj-common/pkg/utils"
 	"user-service/internal/domain/user"
 )
 

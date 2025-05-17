@@ -14,11 +14,12 @@ nacos:
           context-path: /nacos
     register:
         ip: 127.0.0.1
-        port: 14516
+        port: 14521
         service-name: user-service
         weight: 10
         enable: true
         healthy: true
         ephemeral: true
     config:
+        dataId: user-service.yaml
         group: DEFAULT_GROUP

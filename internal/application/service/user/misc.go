@@ -1,9 +1,9 @@
 package user
 
 import (
-	"common/application/dto/request"
-	"common/infrastructure/persistence/entity"
-	"common/pkg/errors"
+	"stuoj-api/application/dto/request"
+	"stuoj-common/infrastructure/persistence/entity"
+	"stuoj-common/pkg/errors"
 )
 
 // 检查权限

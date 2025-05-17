@@ -1,9 +1,9 @@
 package valueobject
 
 import (
-	"common/domain/shared"
 	"errors"
 	"strings"
+	"stuoj-common/domain/shared"
 )
 
 type Avatar struct {

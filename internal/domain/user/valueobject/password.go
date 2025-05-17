@@ -1,8 +1,8 @@
 package valueobject
 
 import (
-	"common/domain/shared"
 	"errors"
+	"stuoj-common/domain/shared"
 
 	"golang.org/x/crypto/bcrypt"
 )

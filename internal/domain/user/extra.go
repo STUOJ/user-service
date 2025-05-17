@@ -1,9 +1,9 @@
 package user
 
 import (
-	"common/infrastructure/persistence/entity"
-	"common/infrastructure/persistence/repository/option"
 	"fmt"
+	"stuoj-common/infrastructure/persistence/entity"
+	"stuoj-common/infrastructure/persistence/repository/option"
 )
 
 const acCountSQL = "(SELECT COUNT(DISTINCT(problem_id)) FROM tbl_submission WHERE tbl_submission.user_id = tbl_user.id AND tbl_submission.status = 3) AS ac_count"
