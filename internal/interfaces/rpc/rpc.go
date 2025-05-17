@@ -9,7 +9,7 @@ import (
 	"user-service/pkg/config"
 )
 
-func InitRpc() error {
+func Init() error {
 	conf := config.Conf.UserService.Grpc
 
 	listen, err := net.Listen("tcp", ":"+conf.Port)

@@ -31,9 +31,6 @@ func InitConfig() error {
 	if err != nil {
 		return err
 	}
-	utils.Expire = Conf.UserService.Token.Expire
-	utils.Secret = Conf.UserService.Token.Secret
-	utils.Refresh = Conf.UserService.Token.Refresh
 	utils.EmailHost = Conf.UserService.Email.Host
 	utils.EmailPort = Conf.UserService.Email.Port
 	utils.FromEmail = Conf.UserService.Email.Email

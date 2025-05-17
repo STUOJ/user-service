@@ -6,7 +6,7 @@ import (
 )
 
 func InitNacos() {
-	if err := nacos.InitNacos(); err != nil {
+	if err := nacos.Init(); err != nil {
 		log.Println("初始化 Nacos 失败！")
 		panic(err)
 	}

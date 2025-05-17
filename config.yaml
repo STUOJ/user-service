@@ -14,7 +14,7 @@ nacos:
           context-path: /nacos
     register:
         ip: 127.0.0.1
-        port: 14521
+        port: 19191
         service-name: user-service
         weight: 10
         enable: true

@@ -1,6 +1,9 @@
 package user
 
 import (
+	"stuoj-api/application/converter"
+	"stuoj-api/application/dto/request"
+	"stuoj-api/application/dto/response"
 	"stuoj-common/infrastructure/persistence/repository/option"
 	"stuoj-common/infrastructure/persistence/repository/querycontext"
 	"user-service/internal/domain/user"
@@ -15,4 +18,14 @@ func Count(query querycontext.UserQueryContext) (int64, error) {
 	}
 
 	return count, nil
+}
+
+func Statistics(params request.UserStatisticsParams, reqUser request.ReqUser) (response.StatisticsRes, error) {
+	qc := converter.UserParams2Query(params.QueryUserParams)
+	qc.GroupBy = params.GroupBy
+	resp, err := user.Query.GroupCount(qc)
+	if err != nil {
+		return nil, err
+	}
+	return resp, nil
 }
